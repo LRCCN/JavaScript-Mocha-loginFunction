@@ -1,0 +1,11 @@
+{
+  "name": "login-function-mocha",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "mocha \"test/**/*.js\""
+  },
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  }
+}
