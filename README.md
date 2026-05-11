@@ -1,57 +1,77 @@
 # loginFunction
 
-Projeto de estudo de uma função de login em JavaScript com testes automatizados usando Mocha.
+Projeto simples em JavaScript que simula autenticação de usuários e valida diferentes cenários de login com testes automatizados.
 
-## Sobre
+## Visão geral
 
-Implementação da função `fazerLogin` que valida credenciais de usuários, com cobertura de testes para os principais cenários de uso.
+Este projeto contém uma função chamada fazerLogin que recebe email e senha, busca o usuário em memória e retorna ou lança mensagens de acordo com o resultado da validação.
 
-## Estrutura
+Os usuários possuem os campos:
 
+- id
+- nome
+- email
+- senha
+- expirado
+
+## Comportamento da função
+
+A função trata os seguintes casos:
+
+- Login válido: retorna Login realizado com sucesso
+- Credencial expirada: lança erro com Suas credenciais expiraram. Renove suas credenciais
+- Email inexistente: lança erro com Suas credenciais estão incorretas
+- Senha incorreta: lança erro com Suas credenciais estão incorretas
+- Campos vazios: lança erro com Os campos Email e senha não podem estar vazios
+
+## Exemplo de uso
+
+```js
+import { fazerLogin } from './src/login.js';
+
+const resultado = fazerLogin('luiz@email.com', 'luiz123');
+console.log(resultado); // Login realizado com sucesso
 ```
+
+## Estrutura do projeto
+
+```text
 loginFunction/
 ├── src/
-│   └── login.js        # Função principal de login
+│   └── login.js
 ├── test/
-│   └── login.test.js   # Testes automatizados
-└── package.json
+│   └── login.test.js
+├── reports/
+│   ├── resultado.json
+│   └── resultado.html
+├── package.json
+└── README.md
 ```
 
-## Funcionalidade
-
-A função `fazerLogin(email, senha)` valida as credenciais e retorna:
-
-- **Sucesso** — retorna `'Login realizado com sucesso'`
-- **Campos vazios** — lança erro: `'Os campos Email e senha não podem estar vazios'`
-- **Credenciais expiradas** — lança erro: `'Suas credenciais expiraram. Renove suas credenciais'`
-- **Credenciais incorretas** — lança erro: `'Suas credenciais estão incorretas'`
-
-## Instalação
+## Como executar
 
 ```bash
 npm install
-```
-
-## Testes
-
-```bash
 npm test
 ```
 
-O relatório HTML é gerado automaticamente em `reports/resultado.html` após a execução.
+Após rodar os testes, o relatório é gerado em:
 
-Os testes cobrem 6 cenários:
+- reports/resultado.json
+- reports/resultado.html
 
-1. Login bem-sucedido
+## Cenários cobertos em teste
+
+1. Sucesso
 2. Credencial expirada
 3. Usuário não encontrado
 4. Senha incorreta para usuário existente
 5. Email vazio
 6. Senha vazia
 
-## Tecnologias
+## Tecnologias usadas
 
-- Node.js (ESModules)
-- [Mocha](https://mochajs.org/) — framework de testes
-- [Mochawesome](https://github.com/adamgruber/mochawesome) — reporter com relatório HTML
-- `node:assert` — módulo nativo de asserções
+- Node.js (ES Modules)
+- Mocha
+- Mochawesome
+- node:assert
